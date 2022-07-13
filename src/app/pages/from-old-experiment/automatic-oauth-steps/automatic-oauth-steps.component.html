@@ -1,0 +1,31 @@
+<div class="state-values">
+    <label>Discovery document loaded:</label>
+    <div>{{state.discoveryDocumentLoaded}}</div>
+
+    <label>Has valid Access Token:</label>
+    <div>{{state.hasValidAccessToken}}</div>
+
+    <label class="m-b-sm">Access Token expiration:</label>
+    <div>{{state.accessTokenExpiration | date : 'medium'}}</div>
+
+    <label>Has valid ID token:</label>
+    <div>{{state.hasValidIdToken}}</div>
+
+    <label>ID Token expiration:</label>
+    <div>{{state.idTokenExpiration | date : 'medium'}}</div>
+
+    <!--    User DN: {{authenticatedUserInfo.user_dn}}-->
+</div>
+
+
+<div class="m-t-lg">
+    <button class="btn iam-btn" [class]="isDiscoveryDocumentLoaded ? 'btn-default' : 'btn-primary'" (click)="loadDiscoveryDocument()">Load Discovery Document</button>
+    <button class="btn iam-btn m-t-xs" [class]="isDiscoveryDocumentLoaded ? 'btn-primary' : 'btn-default'" (click)="initLoginFlow()">Bring up the login page (initLoginFlow)</button>
+    <button class="btn iam-btn m-t-xs" [class]="isDiscoveryDocumentLoaded ? 'btn-primary' : 'btn-default'" (click)="tryLoginCodeFlow()">Consume the query parameter: "code" (tryLoginCodeFlow)</button>
+    <button class="btn iam-btn m-t-xs" [class]="isDiscoveryDocumentLoaded ? 'btn-primary' : 'btn-default'" (click)="loadUserProfile()">Get user info (loadUserProfile)</button>
+
+    <button class="btn btn-default iam-btn m-t-xs" (click)="setupAutomaticSilentRefresh()">Start automatic refresh (setupAutomaticSilentRefresh)</button>
+
+    <button class="btn btn-default iam-btn m-t-lg" (click)="printOauthService()">Print OAuth Service</button>
+    <button class="btn btn-default iam-btn m-t-xs" (click)="updateState()">Update State</button>
+</div>
