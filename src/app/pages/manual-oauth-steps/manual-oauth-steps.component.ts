@@ -47,7 +47,6 @@ export class ManualOauthStepsComponent implements OnDestroy {
             scope: 'openid profile email api offline_access user_dn tenantname tenantid repository_name user_name', // See: authcfg.xml
             responseType: 'code', // We should be using 'code' instead of 'implicit'
             showDebugInformation: true,
-            userinfoEndpoint: `${OAUTH_SETTINGS.baseUrl}/userinfo`
         });
 
         this.sub = this.oauthService.events.subscribe((oauthEvent: OAuthEvent) => {
@@ -170,5 +169,10 @@ export class ManualOauthStepsComponent implements OnDestroy {
         this.oauthService.scope = '';
         this.oauthService.setupAutomaticSilentRefresh();
         console.log('Automatic silent refresh started');
+    }
+
+    printAuthorizationHeader() {
+        console.log('Authorization header:');
+        console.log(this.oauthService.authorizationHeader());
     }
 }
